@@ -1,0 +1,12 @@
+{
+  "generator-easy-ui5": {
+    "projectname": "myUI5App",
+    "namespace": "com.ssg",
+    "platform": "Static webserver",
+    "viewtype": "XML",
+    "viewname": "Home",
+    "ui5libs": "Content delivery network (SAPUI5)",
+    "newdir": true,
+    "namespaceURI": "com/ssg"
+  }
+}
