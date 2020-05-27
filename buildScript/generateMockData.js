@@ -3,6 +3,9 @@ const chalk = require('chalk')
 const fs = require('fs')
 const Papa = require('papaparse')
 const path = require('path')
+const Order = require('./orders')
+const Customer = require('./customers')
+const Material = require('./materials')
 
 const folder = path.resolve(__dirname, '../db/csv/')
 const csvConfig = {
@@ -18,84 +21,14 @@ const csvConfig = {
 
 let extension = `.${process.argv.slice(2)[0]}`
 
-casual.define('order', function () {
-    return {
-        orderID: casual.uuid,
-        currency: casual.currency_code,
-        soldTo: casual.company_name,
-        createdAt: casual.date((format = 'YYYY-MM-DD')),
-    }
-})
+const aCustomer = Customer.generateCustomers(10)
+const aMaterials = Material.generateMaterials(10)
+const { aOrders, aOrderItems } = Order.generateOrders(
+    100,
+    aCustomer,
+    aMaterials
+)
 
-casual.define('orderItem', function () {
-    return {
-        materialID: casual.integer((from = 1), (to = 15)),
-        netValue: casual.double((from = 0), (to = 1000)).toFixed(2),
-    }
-})
-
-casual.define('material', function () {
-    return {
-        materialID: casual.integer((from = 1), (to = 15)),
-        description: casual.random_element([
-            'A380',
-            'A320',
-            'A350',
-            'A350N',
-            'Beluga',
-            'Pipes',
-            'Papers',
-            'Staples',
-            'Stamps',
-            'Salt',
-            'Rock',
-            'Paper',
-            'Glasses',
-        ]),
-        type: casual.random_element(['ZAB', 'ZER', 'ZAR', 'ZTE']),
-        email: casual.email,
-        firstName: casual.first_name,
-        lastName: casual.last_name,
-    }
-})
-
-const generateOrderItems = (orderRef, max) => {
-    const aOrderItems = []
-    let item = 10
-    for (let i = 0; i < max; i++) {
-        const orderItem = casual.orderItem
-        orderItem.orderID = orderRef.orderID
-        orderItem.item = item
-        aOrderItems.push(orderItem)
-        item += 10
-    }
-    return aOrderItems
-}
-
-const generateOrders = (max) => {
-    const aOrders = []
-    let aOrderItems = []
-    for (let i = 0; i < max; i++) {
-        const order = casual.order
-        aOrders.push(order)
-        aOrderItems = aOrderItems.concat(
-            generateOrderItems(order, casual.integer(0, 10))
-        )
-    }
-    return { aOrders, aOrderItems }
-}
-
-const generateMaterials = (max) => {
-    const aMaterials = []
-    for (let i = 0; i < max; i++) {
-        aMaterials.push(casual.material)
-    }
-
-    return aMaterials
-}
-
-const { aOrders, aOrderItems } = generateOrders(10)
-const aMaterials = generateMaterials(10)
 const data = {}
 
 switch (true) {
