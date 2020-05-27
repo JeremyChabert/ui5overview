@@ -5,7 +5,15 @@
   <App id="idAppControl" >
     <pages>
       <Page title="{i18n>title}">
-        <content></content>
+        <content>
+        <MessageStrip
+          text="Hello world"
+          type="Success"
+          showIcon="true"
+          showCloseButton="false"
+          class="sapUiMediumMarginBottom">
+			</MessageStrip>
+        </content>
       </Page>
     </pages>
   </App>
