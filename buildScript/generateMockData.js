@@ -57,7 +57,8 @@ switch (true) {
 }
 
 for (let [key, values] of Object.entries(data)) {
-    fs.writeFile(path.join(folder, key + extension), values, (err) => {
+    const fileName = `schema-${key.charAt(0).toUpperCase()}${key.slice(1)}`
+    fs.writeFile(path.join(folder, `${fileName}${extension}`), values, (err) => {
         if (err) {
             return console.log(chalk.red(err))
         } else {
