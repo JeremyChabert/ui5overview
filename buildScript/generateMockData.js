@@ -21,26 +21,31 @@ const csvConfig = {
 
 let extension = `.${process.argv.slice(2)[0]}`
 
-const aCustomer = Customer.generateCustomers(10)
+const aCustomers = Customer.generateCustomers(10)
 const aMaterials = Material.generateMaterials(10)
 const { aOrders, aOrderItems } = Order.generateOrders(
     100,
-    aCustomer,
+    aCustomers,
     aMaterials
 )
 
-const data = {}
+const data = {
+    customers: aCustomers,
+    orders: aOrders,
+    orderItems: aOrderItems,
+    materials: aMaterials,
+}
 
 switch (true) {
     case /json/.test(extension):
-        data.orders = JSON.stringify({ d: aOrders })
-        data.orderItems = JSON.stringify({ d: aOrderItems })
-        data.materials = JSON.stringify({ d: aMaterials })
+        for (let [key, values] of Object.entries(data)) {
+            data[key] = JSON.stringify({ d: values })
+        }
         break
     case /csv/.test(extension):
-        data.orders = Papa.unparse(aOrders, csvConfig)
-        data.orderItems = Papa.unparse(aOrderItems, csvConfig)
-        data.materials = Papa.unparse(aMaterials, csvConfig)
+        for (let [key, values] of Object.entries(data)) {
+            data[key] = Papa.unparse(values, csvConfig)
+        }
         break
     default:
         console.log(
