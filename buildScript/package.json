@@ -1,0 +1,17 @@
+{
+  "name": "ui5-server",
+  "version": "1.0.0",
+  "description": "UI5 data server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jérémy Chabert",
+  "license": "ISC",
+  "dependencies": {
+    "casual": "^1.6.2",
+    "chalk": "^4.0.0",
+    "papaparse": "^5.2.0",
+    "path": "^0.12.7"
+  }
+}
