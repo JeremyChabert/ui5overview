@@ -56,10 +56,10 @@ const createSFINMaterial = (aRawMaterials) => {
     return aSFINMaterials
 }
 
-const createFINMaterial = (aSFINMaterials) => {
+const createFINMaterial = (aMaterials) => {
     const aFINMaterials = []
     for (let i = 0; i < 10; i++) {
-        aFINMaterials.push(casual.finmaterial(aSFINMaterials))
+        aFINMaterials.push(casual.finmaterial(aMaterials))
     }
     return aFINMaterials
 }
@@ -67,7 +67,10 @@ const createFINMaterial = (aSFINMaterials) => {
 const createMaterials = () => {
     const aRawMaterials = createRawMaterials()
     const aSFINMaterials = createSFINMaterial(aRawMaterials)
-    const aFINMaterials = createFINMaterial(aSFINMaterials)
+    const aFINMaterials = createFINMaterial([
+        ...aRawMaterials,
+        ...aSFINMaterials,
+    ])
     return [...aFINMaterials, ...aRawMaterials, ...aSFINMaterials]
 }
 module.exports.generateMaterials = function () {
