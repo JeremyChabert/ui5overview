@@ -3,7 +3,7 @@ const casual = require('casual')
 //prepare generator
 casual.define('customer', function () {
     return {
-        customerId: casual.integer(1e5, 4e5),
+        customerID: casual.integer(1e5, 4e5),
         name: casual.company_name,
         phone: casual.phone,
         street: casual.street,

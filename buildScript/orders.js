@@ -27,7 +27,7 @@ const createOrderItems = (orderRef, max, materialList) => {
 
 const createOrders = (max, customerList, materialList) => {
     //prepare generator
-    const aCustomerId = customerList.map((x) => x.customerId)
+    const aCustomerId = customerList.map((x) => x.customerID)
     casual.define('order', function () {
         return {
             orderID: casual.uuid,

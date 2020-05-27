@@ -62,7 +62,7 @@ for (let [key, values] of Object.entries(data)) {
         if (err) {
             return console.log(chalk.red(err))
         } else {
-            console.log(chalk.green(`Mock ${key}(${extension}) generated`))
+            console.log(chalk.green(`Mock ${fileName}(${extension}) generated`))
         }
     })
 }

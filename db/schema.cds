@@ -6,31 +6,34 @@ entity Orders : managed {
     soldTo : String;
     currency : String;
     items: Association to many OrderItems on items.orderID = orderID;
-    customerID: Integer;
-    customer: Association to Customers on customer.customerID = customerID;
+    customer: Association to Customers on customer.customerID = soldTo;
 }
 
 entity OrderItems {
     key item: Integer;
     key orderID: UUID;
-    order: Association to Orders on order.orderID = orderID;
-    materialID: Integer;
-    material: Association to Materials on material.materialID = materialID;
+    materialID: String;
+    quantity: Integer;
     netValue: Decimal(10, 2);
+    order: Association to Orders on order.orderID = orderID;
+    material: Association to Materials on material.materialID = materialID;
 }
 
 entity Materials {
-    key materialID: Integer;
+    key materialID: String;
     description: String;
     type: String;
-    email: String;
-    firstName: String;
-    lastName: String;
+    components: String;
     orderItems: Association to many OrderItems on orderItems.materialID = materialID;
 }
 
 entity Customers {
-    key customerID: UUID;
+    key customerID: String;
     name: String;
-    orders: Association to many Orders on orders.customerID = customerID;
+    phone: String;
+    street: String;
+    city: String;
+    country: String;
+    website: String;
+    orders: Association to many Orders on orders.soldTo = customerID;
 }
