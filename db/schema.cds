@@ -1,4 +1,4 @@
-namespace my.service;
+namespace schema;
 using { Country, managed } from '@sap/cds/common';
 
 entity Orders : managed {
