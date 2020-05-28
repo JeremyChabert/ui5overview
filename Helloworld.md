@@ -1,5 +1,7 @@
 # Hello world starter
 
+## View
+
 Open your app folder and search for Home.view.xml
 Path should be `webapp/view/`
 
@@ -35,7 +37,7 @@ And replace it with the sample below
 </Page>
 ```
 
-Open a browser and navigate to SAPUI5 SDK.  
+Open a browser and navigate to [SAPUI5 SDK].  
 Click on Samples in the header and look for `MessageStrip` component  
 Among the samples, pick `Message Strip with enableFormattedText`  
 You should see the results of different message strip layout
@@ -97,3 +99,71 @@ Change the `text` attribute with the following:
 
 ## i18n
 
+TODO
+
+## Controller
+
+In addition to the message strip, we'll add a button that will display a `MessageToast`
+
+Once again, (re)open the [SAPUI5 SDK] and look for the Button Component in the sample
+
+This component will need an implementation in 2 parts:
+
+- the component itself in the view
+- the method associated with the press event (`press` which triggers `onPress`) in the controller
+
+```xml
+<Button text="Say hello"
+press="onPress"
+ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+</Button>
+```
+
+Now in the `controller/` folder, select the corresponding controller attached to the view
+
+Write down the code below between the curly brakets **{ }** of `Controller.extend(...,{})`
+
+```js
+onPress: function (oEvent) {
+        sap.m.MessageToast.show("Hello World", {
+          duration: 3000, // default
+          my: "center center",
+          at: "center center",
+          animationTimingFunction: "ease-in-out",
+        });
+}
+```
+
+Alternative
+
+Declare the use of the library in the define section
+
+```js
+sap.ui.define([
+  "com/ssg/myUI5App/controller/BaseController",
+  "sap/m/MessageToast"
+]
+```
+
+Give it an alias in the function list of parameters
+
+```js
+function(Controller,MessageToast)
+```
+
+Then, you can use the library directly throught its alias
+
+```js
+onPress: function (oEvent) {
+        MessageToast.show("Hello World",
+          duration: 3000, // default
+          my: "center center",
+          at: "center center",
+          animationTimingFunction: "ease-in-out",
+        });
+}
+```
+
+Give it a shot and go to your [local app](http://localhost:8080/index.html) and press the button
+
+[SAPUI5 SDK]:(https://sapui5.hana.ondemand.com/)
