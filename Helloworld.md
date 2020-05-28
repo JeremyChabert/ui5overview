@@ -6,7 +6,7 @@ Open your app folder and search for Home.view.xml
 Path should be `webapp/view/`
 
 What you should all have at this point is:
-_Note: We shorten the real content of your app, just focus on the xml tag_
+
 
 ```xml
  <mvc:View >
@@ -19,6 +19,8 @@ _Note: We shorten the real content of your app, just focus on the xml tag_
   </App>
 </mvc:View>
 ```
+
+>Note: We shorten the real content of your app, just focus on the xml tag
 
 Delete the everything related to the `MessagePage`.
 And replace it with the sample below
@@ -45,7 +47,7 @@ At the top right of the browser page, next to download, you should see a button 
 This is to access the source code of what you're currently viewing.
 Press it.
 
-You'll have a xml view similar to this sample below “  
+You'll have a xml view similar to this sample below  
 
 ```xml
 <mvc:View
@@ -83,10 +85,10 @@ A similar component exists for layouting components horizontally
 Finally, we have the `MessageStrip` component, the one we looked for with some of its properties.  
 If you look closely in the header bar, you'll see a big blue button `API reference`. This will direct you to the API reference of this component and you'll be able to see all its features and how to use them  
 
-Rule of thumb:
-
-- A component will always start with an Uppercase letter
-- An aggregation of a component will always start with a lowercase letter
+>Rule of thumb:
+>
+> - A component will always start with an Uppercase letter
+> - An aggregation of a component will always start with a lowercase letter
 
 Let's get back to our webapp.
 
