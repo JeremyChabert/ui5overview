@@ -5,15 +5,22 @@
   <App id="idAppControl" >
     <pages>
       <Page title="{i18n>title}">
+        <headerContent>
+        </headerContent>
         <content>
         <MessageStrip
-          text="Hello world"
+          text="{i18n>helloWorld}"
           type="Success"
           showIcon="true"
           showCloseButton="false"
           class="sapUiMediumMarginBottom">
-			</MessageStrip>
+			  </MessageStrip>
+        <Button text="Default"
+						press="onPress"
+						ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+				</Button>
         </content>
+        <footer/>
       </Page>
     </pages>
   </App>
