@@ -60,3 +60,9 @@ This is the part that is accountable for separating the view logic from the data
 The Controller responds to user interaction and “view events” by adjusting the view and the model. The controller is essentially sending commands to the model to update it’s state, like editing a document in a word processing application.  
 Similar to views, Controllers carry the same name as the related view (if there is a 1:1 relationship).  
 Controller names always end with __*controller.js__ (as you’ll see below).  
+
+## Building our app
+
+- [HelloWorld](/HelloWorld)
+- [Binding](/Binding)
+- [Navigate](/Navigate)
