@@ -63,6 +63,6 @@ Controller names always end with __*controller.js__ (as you�ll see below).
 
 ## Building our app
 
-- [HelloWorld](HelloWorld.md)
+- [HelloWorld](Helloworld.md)
 - [Binding](Binding.md)
 - [Navigate](Navigate.md)
