@@ -53,16 +53,16 @@ So let's take a minute or two to look what it contains.
 
 **View**: This part is accountable for interpreting and rendering the initial UI. The view in the context of SAPUI5, generates the presentation to the user based on changes in the model.
 
-What does a view look like? Well, in its directory, views are in stored in the “view” folder and names of XML views always end with __*.view.xml__ (as you’ll see later).
+What does a view look like? Well, in its directory, views are in stored in the ï¿½viewï¿½ folder and names of XML views always end with __*.view.xml__ (as youï¿½ll see later).
 
 **Controller**: This is one of the most important parts.  
 This is the part that is accountable for separating the view logic from the data logic.  
-The Controller responds to user interaction and “view events” by adjusting the view and the model. The controller is essentially sending commands to the model to update it’s state, like editing a document in a word processing application.  
+The Controller responds to user interaction and ï¿½view eventsï¿½ by adjusting the view and the model. The controller is essentially sending commands to the model to update itï¿½s state, like editing a document in a word processing application.  
 Similar to views, Controllers carry the same name as the related view (if there is a 1:1 relationship).  
-Controller names always end with __*controller.js__ (as you’ll see below).  
+Controller names always end with __*controller.js__ (as youï¿½ll see below).  
 
 ## Building our app
 
-- [HelloWorld](/HelloWorld.md)
-- [Binding](/Binding.md)
-- [Navigate](/Navigate.md)
+- [HelloWorld](Helloworld.md)
+- [Binding](Binding.md)
+- [Navigate](Navigate.md)
