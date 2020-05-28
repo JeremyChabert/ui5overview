@@ -3,15 +3,47 @@
 Open your app folder and search for Home.view.xml
 Path should be `webapp/view/`
 
+What you should all have at this point is:
+_Note: We shorten the real content of your app, just focus on the xml tag_
+
+```xml
+ <mvc:View >
+  <App id="idAppControl">
+    <pages>
+        <MessagePage text="Welcome ! Your app works perfectly but... it is just empty"
+        showHeader="false" icon="sap-icon://thumb-up"
+        description=""/>
+    </pages>
+  </App>
+</mvc:View>
+```
+
+Delete the everything related to the `MessagePage`.
+And replace it with the sample below
+
+```xml
+<Page title="{i18n>title}">
+    <headerContent>
+
+    </headerContent>
+    <content>
+
+    </content>
+    <footer>
+
+    </footer>
+</Page>
+```
+
 Open a browser and navigate to SAPUI5 SDK.  
 Click on Samples in the header and look for `MessageStrip` component  
 Among the samples, pick `Message Strip with enableFormattedText`  
 You should see the results of different message strip layout
-At the top right of the browser page, next to download, you should see a button look like {≡}.
+At the top right of the browser page, next to download, you should see a button look like {=}.
 This is to access the source code of what you're currently viewing.
 Press it.
 
-You'll have a xml view similar to this sample below ↓  
+You'll have a xml view similar to this sample below �  
 
 ```xml
 <mvc:View
@@ -23,6 +55,7 @@ You'll have a xml view similar to this sample below ↓
         <l:content>
             <MessageStrip
                 text="{/default}"
+                type="Success"
                 enableFormattedText="true"
                 showIcon="true"
                 showCloseButton="true"
@@ -52,3 +85,15 @@ Rule of thumb:
 
 - A component will always start with an Uppercase letter
 - An aggregation of a component will always start with a lowercase letter
+
+Let's get back to our webapp.
+
+Copy the `MessageStrip` component (everything between the tags `<MessageStrip>`) and paste it in your app between the `<content>` tags
+
+Change the `showCloseButton` attribute and set it to false
+
+Change the `text` attribute with the following:
+`{i18n>HelloWorld}`
+
+## i18n
+
