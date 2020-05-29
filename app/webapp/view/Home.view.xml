@@ -19,6 +19,7 @@
               press="onPress"
               ariaDescribedBy="defaultButtonDescription genericButtonDescription">
 				  </Button>
+          <Input value="{local>/name}" placeholder="Say hello to..."/>
         </content>
         <footer/>
       </Page>

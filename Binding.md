@@ -45,6 +45,7 @@ Next, we'll see how to display the data of the model using data binding.
 
 ## Bind the model to a text element
 We are going to display a custom "Hello" message using the `local` model that we just created.
+
 To do so, we are going to change the `Home.view.xml` file, to replace the "Hello world" text.
 ```xml
 <!-- ... -->
@@ -59,6 +60,24 @@ To do so, we are going to change the `Home.view.xml` file, to replace the "Hello
 <!-- ... -->
 ```
 
-Now, instead of "Hello World", we should have "Hello Paul".
+Now, instead of "Hello World", we should have "Hello Paul" !
 
-## Remove initial data and bind the model property to an input instead
+## Add an input field to change the `name` property
+Finally, we are going to add an input field to be able to change the value of the `name` property of the model.
+
+In `Home.view.xml`, add:
+```xml
+<!-- ... -->
+          <!-- Add the Input at the end of the <content>, below the button -->
+          <Input value="{local>/name}" placeholder="Say hello to..."/>
+<!-- ... -->
+```
+
+Now, when we change the value of the input and hit "Enter" or un-focus the input, the text updates automatically !
+
+This is what is called **two-way binding**. This means that if we change a value in the model, the view is updated, but **also** that if we change a binded property in the view, the model is updated too.
+
+>There is 3 types of binding in SAPUI5:
+> - *One Time*: binding from the model to the view, once
+> - *One Way*: binding from the model to the view. A value change in the model update all corresponding bindings and the view
+> - *Two Way*: binding from the model to the view and from the view to the model. A value change in the model and in the view updates all corresponding bindings and the view and model, respectively
