@@ -8,18 +8,18 @@
         <headerContent>
         </headerContent>
         <content>
-          <MessageStrip
-            text="Hello {local>/name}"
-            type="Success"
-            showIcon="true"
-            showCloseButton="false"
-            class="sapUiMediumMarginBottom">
-          </MessageStrip>
-          <Button text="Default"
-              press="onPress"
-              ariaDescribedBy="defaultButtonDescription genericButtonDescription">
-				  </Button>
-          <Input value="{local>/name}" placeholder="Say hello to..."/>
+            <List
+      id="ShortProductList"
+      headerText="Products"
+      items="{
+        path: '/Orders'
+
+      }">
+      <items>
+        <StandardListItem
+          title="{OrderID}" />
+      </items>
+    </List>
         </content>
         <footer/>
       </Page>

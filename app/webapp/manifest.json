@@ -11,8 +11,11 @@
     "description": "{{appDescription}}",
     "dataSources": {
       "API": {
-        "uri": "/api",
-        "type": "odata"
+        "uri": "/api/",
+        "type": "odata",
+        "settings": {
+          "odataVersion": "4.0"
+        }
       }
     }
   },
@@ -59,8 +62,19 @@
         }
       },
       "": {
-        "type": "sap.ui.model.odata.v2.ODataModel",
-        "dataSource": "API"
+        "dataSource": "API",
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
       }
     },
     "resources": {
