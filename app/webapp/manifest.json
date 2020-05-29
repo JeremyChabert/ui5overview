@@ -8,7 +8,13 @@
       "version": "1.0.0"
     },
     "title": "{{appTitle}}",
-    "description": "{{appDescription}}"
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "API": {
+        "uri": "/api",
+        "type": "odata"
+      }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -51,6 +57,10 @@
         "settings": {
           "bundleName": "com.ssg.myUI5App.i18n.i18n"
         }
+      },
+      "": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "dataSource": "API"
       }
     },
     "resources": {

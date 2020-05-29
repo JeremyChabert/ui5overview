@@ -20,5 +20,49 @@ Here are a few examples of OData GET queries against our API:
 A lot of other query options exist. To learn more, click [here](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)
 
 ## Configure an OData model
+The configuration is done in the application description file, `manifest.json`.
+
+First, we need to define our data source, that points to our API:
+```json
+{
+    // ...
+    "sap.app": {
+        // ...
+        // add a dataSources object under the existing properties
+        "dataSources": {
+            "API": {
+                "uri": "/api",
+                "type": "odata"
+            }
+        }
+    }
+}
+```
+
+Now, let's define our model, still in `manifest.json`:
+```json
+{
+  // ...
+  "sap.ui5": {
+    // ...
+    "models": {
+      "i18n": {
+        // ...
+        },
+        // Add a new model:
+        "": {
+          "type": "sap.ui.model.odata.v2.ODataModel",
+          "dataSource": "API"
+        }
+      }
+    },
+    // ...
+  }
+}
+```
+
+Note: Since we only have one model, we use an *unnamed* model.
+
+Now, when our app is created, it will query our OData API to get its metadata and build an `ODataModel`, that will be accessible from anywhere in our app.
 
 ## Display a list of Orders
