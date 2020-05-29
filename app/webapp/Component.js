@@ -32,7 +32,7 @@ sap.ui.define([
         name: 'Paul'
       };
       const jsonModel = new JSONModel(data); // creating the model
-      sap.ui.getCore().setModel(jsonModel, 'local'); // assigning the model to the SAPUI5 core
+      this.setModel(jsonModel, 'local'); // assigning the model to the SAPUI5 core
     }
   });
 });

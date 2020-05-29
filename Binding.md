@@ -34,7 +34,7 @@ sap.ui.define([
             name: 'Paul'
         };
         const jsonModel = new JSONModel(data); // creating the model
-        sap.ui.getCore().setModel(jsonModel, 'local'); // assigning the model to the SAPUI5 core
+        this.setModel(jsonModel, 'local'); // assigning the model to the SAPUI5 core
     }
   });
 });
@@ -44,7 +44,21 @@ Now our model `local` will be available everywhere in our application.
 Next, we'll see how to display the data of the model using data binding.
 
 ## Bind the model to a text element
-=> in the view.xml
+We are going to display a custom "Hello" message using the `local` model that we just created.
+To do so, we are going to change the `Home.view.xml` file, to replace the "Hello world" text.
+```xml
+<!-- ... -->
+          <!-- Change the text property: -->
+          <MessageStrip
+            text="Hello {local>/name}"
+            type="Success"
+            showIcon="true"
+            showCloseButton="false"
+            class="sapUiMediumMarginBottom">
+          </MessageStrip>
+<!-- ... -->
+```
+
+Now, instead of "Hello World", we should have "Hello Paul".
 
 ## Remove initial data and bind the model property to an input instead
-=> in the view.xml

@@ -8,17 +8,17 @@
         <headerContent>
         </headerContent>
         <content>
-        <MessageStrip
-          text="{i18n>helloWorld}"
-          type="Success"
-          showIcon="true"
-          showCloseButton="false"
-          class="sapUiMediumMarginBottom">
-			  </MessageStrip>
-        <Button text="Default"
-						press="onPress"
-						ariaDescribedBy="defaultButtonDescription genericButtonDescription">
-				</Button>
+          <MessageStrip
+            text="Hello {local>/name}"
+            type="Success"
+            showIcon="true"
+            showCloseButton="false"
+            class="sapUiMediumMarginBottom">
+          </MessageStrip>
+          <Button text="Default"
+              press="onPress"
+              ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+				  </Button>
         </content>
         <footer/>
       </Page>
