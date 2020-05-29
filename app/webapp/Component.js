@@ -1,8 +1,9 @@
 sap.ui.define([
   "sap/ui/core/UIComponent",
   "sap/ui/Device",
-  "com/ssg/myUI5App/model/models"
-], function(UIComponent, Device, models) {
+  "com/ssg/myUI5App/model/models",
+  "sap/ui/model/json/JSONModel"
+], function(UIComponent, Device, models, JSONModel) {
   "use strict";
 
   return UIComponent.extend("com.ssg.myUI5App.Component", {
@@ -25,6 +26,13 @@ sap.ui.define([
 
       // set the device model
       this.setModel(models.createDeviceModel(), "device");
+
+      // Local model
+      const data = { // the data that the model will contain initially
+        name: 'Paul'
+      };
+      const jsonModel = new JSONModel(data); // creating the model
+      this.setModel(jsonModel, 'local'); // assigning the model to the SAPUI5 core
     }
   });
 });

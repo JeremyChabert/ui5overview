@@ -4,9 +4,25 @@
   xmlns:mvc="sap.ui.core.mvc">
   <App id="idAppControl" >
     <pages>
-	    <MessagePage text="Welcome ! Your app works perfectly but... it is just empty"
-      showHeader="false" icon="sap-icon://thumb-up"
-      description=""/>
+      <Page title="{i18n>title}">
+        <headerContent>
+        </headerContent>
+        <content>
+          <MessageStrip
+            text="Hello {local>/name}"
+            type="Success"
+            showIcon="true"
+            showCloseButton="false"
+            class="sapUiMediumMarginBottom">
+          </MessageStrip>
+          <Button text="Default"
+              press="onPress"
+              ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+				  </Button>
+          <Input value="{local>/name}" placeholder="Say hello to..."/>
+        </content>
+        <footer/>
+      </Page>
     </pages>
   </App>
 </mvc:View>
