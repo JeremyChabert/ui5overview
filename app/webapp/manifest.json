@@ -90,21 +90,22 @@
         "viewType": "XML",
         "viewPath": "com.ssg.myUI5App.view",
         "controlId": "idAppControl",
-        "targetControlId": "idAppControl",
+        "targetControl": "idAppControl",
         "controlAggregation": "pages",
+        "clearControlAggregation": false,
         "async": true
       },
       "routes": [
         {
           "name": "RouteHome",
-          "pattern": "RouteHome",
+          "pattern": "",
           "target": [
             "TargetHome"
           ]
         },
         {
           "name": "RouteDetail",
-          "pattern": "Detail",
+          "pattern": "Detail/{order}",
           "target": [
             "TargetDetail"
           ]

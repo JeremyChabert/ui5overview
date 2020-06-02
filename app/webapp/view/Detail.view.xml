@@ -1,6 +1,71 @@
- <mvc:View controllerName="com.ssg.myUI5App.controller.Detail"
-  displayBlock="true"
-  xmlns="sap.m"
+<mvc:View id="idDetailView" controllerName="com.ssg.myUI5App.controller.Detail" displayBlock="true"
+  xmlns="sap.uxap"
+  xmlns:m="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
+  <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true">
+    <headerTitle>
+      <ObjectPageHeader id="idObjectPageHeader" objectImageURI="sap-icon://product" isObjectIconAlwaysVisible="true" objectImageShape="Circle" objectTitle="{orderID}">
+      </ObjectPageHeader>
+    </headerTitle>
+    <headerContent>
 
+    </headerContent>
+    <sections>
+      <ObjectPageSection id="idSectionDetail" title="{i18n>Details}">
+        <subSections>
+          <ObjectPageSubSection title="Stuff1">
+            <m:Table growing="true" growingThreshold="5" id="SalesOrderItems" items="{items}" mode="SingleSelectMaster">
+              <m:headerToolbar>
+                <m:Toolbar>
+                  <m:Title text="Sales Order Items" titleStyle="H2"/>
+                </m:Toolbar>
+              </m:headerToolbar>
+              <m:columns>
+                <m:Column>
+                  <m:Text text="SalesOrder"/>
+                </m:Column>
+                <m:Column>
+                  <m:Text text="SalesOrderItem"/>
+                </m:Column>
+                <m:Column>
+                  <m:Text text="Product"/>
+                </m:Column>
+                <m:Column>
+                  <m:Text text="Quantity"/>
+                </m:Column>
+              </m:columns>
+              <m:ColumnListItem>
+                <m:Text text="{orderID}"/>
+                <m:Text text="{item}"/>
+                <m:Text text="{materialID}-{description}"/>
+                <m:Text text="{quantity}"/>
+              </m:ColumnListItem>
+            </m:Table>
+          </ObjectPageSubSection>
+          <ObjectPageSubSection title="Stuff2">
+            <m:FlexBox direction="Column" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
+              <m:Text text="anotherStuff"/>
+              <m:Text text="yetAnotherOne"/>
+            </m:FlexBox>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+      <ObjectPageSection id="idSectionList" title="{i18n>OtherDetails}">
+        <subSections>
+          <ObjectPageSubSection title="Stuff3">
+            <m:FlexBox direction="Row" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
+              <m:Text text="someStuff"/>
+              <m:Text text="otherStuff"/>
+            </m:FlexBox>
+          </ObjectPageSubSection>
+          <ObjectPageSubSection title="Stuff4">
+            <m:FlexBox direction="Column" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
+              <m:Text text="anotherStuff"/>
+              <m:Text text="yetAnotherOne"/>
+            </m:FlexBox>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+    </sections>
+  </ObjectPageLayout>
 </mvc:View>

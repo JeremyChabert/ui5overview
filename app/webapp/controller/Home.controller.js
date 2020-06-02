@@ -13,7 +13,11 @@ sap.ui.define(
         });
       },
       navToDetail: function (oEvent) {
-        this.navTo("RouteDetail");
+        const oItem = oEvent.getSource();
+        const sOrder = oItem.getBindingContext().getObject().orderID;
+        this.navTo("RouteDetail", {
+          order: sOrder,
+        });
       },
     });
   }
