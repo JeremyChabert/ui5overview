@@ -9,6 +9,7 @@
         </headerContent>
         <content>
             <List
+
               headerText="Orders"
               items="{
                 path: '/Orders',
@@ -20,6 +21,8 @@
               growing="true">
               <items>
                 <StandardListItem
+                  press="navToDetail"
+                  type="Navigation"
                   title="{orderID}"
                   description="{createdAt}"
                   info="{customer/name} ({customer/phone})" />

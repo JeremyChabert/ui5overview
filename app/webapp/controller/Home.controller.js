@@ -12,6 +12,9 @@ sap.ui.define(
           animationTimingFunction: "ease-in-out",
         });
       },
+      navToDetail: function (oEvent) {
+        this.navTo("RouteDetail");
+      },
     });
   }
 );

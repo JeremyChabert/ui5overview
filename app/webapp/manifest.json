@@ -90,6 +90,7 @@
         "viewType": "XML",
         "viewPath": "com.ssg.myUI5App.view",
         "controlId": "idAppControl",
+        "targetControlId": "idAppControl",
         "controlAggregation": "pages",
         "async": true
       },
@@ -100,14 +101,25 @@
           "target": [
             "TargetHome"
           ]
+        },
+        {
+          "name": "RouteDetail",
+          "pattern": "Detail",
+          "target": [
+            "TargetDetail"
+          ]
         }
       ],
       "targets": {
         "TargetHome": {
           "viewType": "XML",
-          "viewLevel": 1,
-          "viewId": "idAppControl",
+          "viewLevel": 0,
           "viewName": "Home"
+        },
+        "TargetDetail": {
+          "viewType": "XML",
+          "viewLevel": 1,
+          "viewName": "Detail"
         }
       }
     }
