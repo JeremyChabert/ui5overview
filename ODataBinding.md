@@ -66,3 +66,44 @@ Note: Since we only have one model, we use an *unnamed* model.
 Now, when our app is created, it will query our OData API to get its metadata and build an `ODataModel`, that will be accessible from anywhere in our app.
 
 ## Display a list of Orders
+
+Finally, let's use data binding to display a list of orders.
+
+We will use a [sap.m.List](https://sapui5.hana.ondemand.com/#/api/sap.m.List) component. In the documentation link, if you go to *Aggregations*, you will see `items` in the list of available aggregations for this component.This is the aggregation that we are going to **bind** to the Orders entity of our model.
+
+For the items of the list (i.e. the content of the `items` aggregation), we will use a [sap.m.StandardListItem](https://sapui5.hana.ondemand.com/#/api/sap.m.StandardListItem). The UI5 framework will generate an instance of StandardListItem for each entry in the Orders entity.
+
+Go to the `Home.view.xml` file:
+```xml
+<!-- ... -->
+        <content>
+
+            <!-- Remove the existing content -->
+
+            <List
+              headerText="Orders"
+              items="{
+                path: '/Orders',
+                parameters: {
+                  expand: 'customer'
+                },
+                sorter: { path: 'createdAt' }
+              }"
+              growing="true">
+              <items>
+                <StandardListItem
+                  title="{orderID}"
+                  description="{createdAt}"
+                  info="{customer/name} ({customer/phone})" />
+              </items>
+            </List>
+
+        </content>
+<!-- ... -->
+```
+
+We bind the `items` aggregation to the Orders entity, expanding the customer of the Orders, and sorting the results by their creation date.
+
+We display the order ID, its creation date, and the name & phone number of the customer.
+
+We also enable the "growing" feature, so that not all the data is loaded at once, but rather when the user scrolls.

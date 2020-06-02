@@ -9,17 +9,22 @@
         </headerContent>
         <content>
             <List
-      id="ShortProductList"
-      headerText="Products"
-      items="{
-        path: '/Orders'
-
-      }">
-      <items>
-        <StandardListItem
-          title="{OrderID}" />
-      </items>
-    </List>
+              headerText="Orders"
+              items="{
+                path: '/Orders',
+                parameters: {
+                  expand: 'customer'
+                },
+                sorter: { path: 'createdAt' }
+              }"
+              growing="true">
+              <items>
+                <StandardListItem
+                  title="{orderID}"
+                  description="{createdAt}"
+                  info="{customer/name} ({customer/phone})" />
+              </items>
+            </List>
         </content>
         <footer/>
       </Page>
