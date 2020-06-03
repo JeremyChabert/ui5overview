@@ -66,3 +66,22 @@ Controller names always end with __*controller.js__ (as you'll see below).
 - [HelloWorld](Helloworld.md)
 - [Binding](Binding.md)
 - [Navigate](Navigate.md)
+
+> Every learning material has a dedicated branch containing the final solution of each step
+
+```sh
+#For helloworld final content
+> git clone --single-branch --branch helloworld https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+#--------
+
+#For binding final content
+# Part1
+> git clone --single-branch --branch binding https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+# Part2
+> git clone --single-branch --branch odatabinding https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+#--------
+
+#For navigation final content
+> git clone --single-branch --branch navigation https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+#--------
+```
