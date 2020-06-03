@@ -2,7 +2,7 @@
 
 ## Summary
 
-What will see in this part is :
+What we will see in this part is :
 
 - Declaration of routes (manifest.json)
 - Routing configuration
@@ -17,7 +17,7 @@ It can be seen at the end of the URL like in the below example :
 - `http://localhost:4004/webapp/index.html#/Home`
 - `http://localhost:4004/webapp/index.html#/Detail/XXXYYY`
 
-Some navigations carry only a **pattern**, others also include parameters (optional or mandatory)
+Some navigations carry only a **pattern**, others include parameters (optional or mandatory)
 
 ## Implementing our first navigation
 
@@ -55,7 +55,7 @@ Starting from the ODataBinding part, we will create the following object:
 
           </ObjectPageSubSection>
 
-           <!-- ↓ STATIC CONTENT TO FILL THE VIEW ↓ -->
+           <!-- STATIC CONTENT TO FILL THE VIEW -->
           <ObjectPageSubSection title="Stuff2">
             <m:FlexBox direction="Column" alignItems="Stretch"
               alignContent="Start" justifyContent="SpaceBetween">
@@ -193,7 +193,7 @@ navToDetail:function(oEvent){
 
 >It's retrieving the source of the event, the item pressed. Once we have the item pressed, we retrieve its binding context to get the order identifier and pass it to the route as a parameter
 
-## Bonus: bind Detail to order clicked
+## Bonus: Bind Detail to order clicked
 
 Currently in `Detail.controller.js`, we are retrieving the order parameter and display it in a message toast.
 Let's change that and use this navigation parameter to bind our view Detail to this order
