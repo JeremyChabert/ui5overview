@@ -36,55 +36,71 @@ Starting from the ODataBinding part, we will create the following object:
   xmlns:m="sap.m"
   xmlns:layout="sap.ui.layout"
   xmlns:mvc="sap.ui.core.mvc">
-  <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false">
-    <headerTitle>
-      <ObjectPageHeader id="idObjectPageHeader" isObjectTitleAlwaysVisible="true" objectImageURI="sap-icon://sales-order-item" isObjectIconAlwaysVisible="true" objectImageShape="Square" objectTitle="{orderID}">
-      </ObjectPageHeader>
-    </headerTitle>
-    <headerContent>
+  <m:Page showFooter="false" showNavButton="true" navButtonPress="onNavBack" title="{i18n>details}" titleAlignment="Center">
+    <m:content>
+      <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false">
+        <headerTitle>
+          <ObjectPageDynamicHeaderTitle id="idObjectPageHeader">
+            <snappedHeading>
+              <m:FlexBox fitContainer="true" alignItems="Center">
+                <m:Avatar src="sap-icon://sales-order-item" class="sapUiTinyMarginEnd"/>
+                <m:Title text="{orderID}" wrapping="true"/>
+              </m:FlexBox>
+            </snappedHeading>
+            <expandedContent>
+              <m:Text text="{orderID}"/>
+            </expandedContent>
+            <snappedContent>
+              <!-- UNCOMMENT WHEN DATABINDING IS DONE <m:Text text="{customer/name}"/> -->
+            </snappedContent>
+          </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        <headerContent>
 
-      <!-- CUSTOMER DATA WILL BE INSERT HERE -->
+          <!-- CUSTOMER DATA WILL BE INSERT HERE -->
 
-    </headerContent>
-    <sections>
-      <ObjectPageSection id="idSectionDetail" title="{i18n>Details}">
-        <subSections>
-          <ObjectPageSubSection title="Stuff1">
+        </headerContent>
+        <sections>
+          <ObjectPageSection id="idSectionDetail" title="{i18n>Details}">
+            <subSections>
+              <ObjectPageSubSection title="Stuff1">
 
-            <!-- TABLE ITEMS WILL BE INSERT HERE -->
+                <!-- TABLE ITEMS WILL BE INSERT HERE -->
 
-          </ObjectPageSubSection>
+              </ObjectPageSubSection>
 
-           <!-- STATIC CONTENT TO FILL THE VIEW -->
-          <ObjectPageSubSection title="Stuff2">
-            <m:FlexBox direction="Column" alignItems="Stretch"
-              alignContent="Start" justifyContent="SpaceBetween">
-              <m:Text text="anotherStuff"/>
-              <m:Text text="yetAnotherOne"/>
-            </m:FlexBox>
-          </ObjectPageSubSection>
-        </subSections>
-      </ObjectPageSection>
-      <ObjectPageSection id="idSectionList" title="{i18n>OtherDetails}">
-        <subSections>
-          <ObjectPageSubSection title="Stuff3">
-            <m:FlexBox direction="Row" alignItems="Stretch" alignContent="Start"
-            justifyContent="SpaceBetween">
-              <m:Text text="someStuff"/>
-              <m:Text text="otherStuff"/>
-            </m:FlexBox>
-          </ObjectPageSubSection>
-          <ObjectPageSubSection title="Stuff4">
-            <m:FlexBox direction="Column" alignItems="Stretch"
-            alignContent="Start" justifyContent="SpaceBetween">
-              <m:Text text="anotherStuff"/>
-              <m:Text text="yetAnotherOne"/>
-            </m:FlexBox>
-          </ObjectPageSubSection>
-        </subSections>
-      </ObjectPageSection>
-    </sections>
-  </ObjectPageLayout>
+               <!-- STATIC CONTENT TO FILL THE VIEW -->
+              <ObjectPageSubSection title="Stuff2">
+                <m:FlexBox direction="Column" alignItems="Stretch"
+                  alignContent="Start" justifyContent="SpaceBetween">
+                  <m:Text text="anotherStuff"/>
+                  <m:Text text="yetAnotherOne"/>
+                </m:FlexBox>
+              </ObjectPageSubSection>
+            </subSections>
+          </ObjectPageSection>
+          <ObjectPageSection id="idSectionList" title="{i18n>OtherDetails}">
+            <subSections>
+              <ObjectPageSubSection title="Stuff3">
+                <m:FlexBox direction="Row" alignItems="Stretch" alignContent="Start"
+                justifyContent="SpaceBetween">
+                  <m:Text text="someStuff"/>
+                  <m:Text text="otherStuff"/>
+                </m:FlexBox>
+              </ObjectPageSubSection>
+              <ObjectPageSubSection title="Stuff4">
+                <m:FlexBox direction="Column" alignItems="Stretch"
+                alignContent="Start" justifyContent="SpaceBetween">
+                  <m:Text text="anotherStuff"/>
+                  <m:Text text="yetAnotherOne"/>
+                </m:FlexBox>
+              </ObjectPageSubSection>
+            </subSections>
+          </ObjectPageSection>
+        </sections>
+      </ObjectPageLayout>
+    </m:content>
+  </m:Page>
 </mvc:View>
 ```
 
