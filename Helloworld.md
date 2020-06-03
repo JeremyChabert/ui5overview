@@ -1,11 +1,11 @@
 # Hello world starter
 
-Start VSCode in the directory where you copy your app
+Start VSCode from the directory where you have cloned your app
 
 - From Windows Explorer, `Right Click -> Open in VSCode`
 - From a terminal prompt, type `code .`
 
-In VSCode, open a integrated terminal:
+In VSCode, open an integrated terminal:
 
 - Press key `Ctrl+P`
 - Start typing `>integra`
@@ -33,7 +33,7 @@ Open the app by clicking the hyperlink in the console or open chrome and type
 
 ## View
 
-Open your app folder and search for Home.view.xml
+Open your app folder and search for `Home.view.xml`
 Path should be `webapp/view/`
 
 What you should all have at this point is:
@@ -42,7 +42,7 @@ What you should all have at this point is:
  <mvc:View >
   <App id="idAppControl">
     <pages>
-        <MessagePage text="Welcome ! Your app works perfectly but... it is just empty"
+        <MessagePage text="{i18n>welcomeMessage}"
         showHeader="false" icon="sap-icon://thumb-up"
         description=""/>
     </pages>
