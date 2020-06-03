@@ -1,44 +1,49 @@
 <mvc:View id="idDetailView" controllerName="com.ssg.myUI5App.controller.Detail" displayBlock="true"
   xmlns="sap.uxap"
   xmlns:m="sap.m"
+  xmlns:layout="sap.ui.layout"
   xmlns:mvc="sap.ui.core.mvc">
-  <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true">
+  <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false">
     <headerTitle>
-      <ObjectPageHeader id="idObjectPageHeader" objectImageURI="sap-icon://product" isObjectIconAlwaysVisible="true" objectImageShape="Circle" objectTitle="{orderID}">
+      <ObjectPageHeader id="idObjectPageHeader" isObjectTitleAlwaysVisible="true" objectImageURI="sap-icon://sales-order-item" isObjectIconAlwaysVisible="true" objectImageShape="Square" objectTitle="{orderID}">
       </ObjectPageHeader>
     </headerTitle>
     <headerContent>
-
+      <m:FlexBox direction="Row">
+        <layout:VerticalLayout >
+          <m:Link text="{customer/phone}"/>
+          <m:Link text="{customer/website}"/>
+        </layout:VerticalLayout>
+        <layout:VerticalLayout>
+          <m:Text text="{customer/street}"/>
+          <m:Text text="{customer/city},{customer/country}"/>
+        </layout:VerticalLayout>
+      </m:FlexBox>
     </headerContent>
     <sections>
-      <ObjectPageSection id="idSectionDetail" title="{i18n>Details}">
+      <ObjectPageSection id="idSectionDetail" title="{i18n>details}">
         <subSections>
           <ObjectPageSubSection title="Stuff1">
-            <m:Table growing="true" growingThreshold="5" id="SalesOrderItems" items="{items}" mode="SingleSelectMaster">
-              <m:headerToolbar>
-                <m:Toolbar>
-                  <m:Title text="Sales Order Items" titleStyle="H2"/>
-                </m:Toolbar>
-              </m:headerToolbar>
+            <m:Table growing="true" growingThreshold="5" id="SalesOrderItems" items="{path:'items'}" mode="None">
               <m:columns>
-                <m:Column>
-                  <m:Text text="SalesOrder"/>
+                <m:Column width="5rem">
+                  <m:Label text="{i18n>salesOrderItem}"/>
                 </m:Column>
                 <m:Column>
-                  <m:Text text="SalesOrderItem"/>
+                  <m:Label text="{i18n>product}"/>
                 </m:Column>
                 <m:Column>
-                  <m:Text text="Product"/>
+                  <m:Label text="{i18n>quantity}"/>
                 </m:Column>
                 <m:Column>
-                  <m:Text text="Quantity"/>
+                  <m:Label text="{i18n>netValue}"/>
                 </m:Column>
               </m:columns>
               <m:ColumnListItem>
-                <m:Text text="{orderID}"/>
-                <m:Text text="{item}"/>
-                <m:Text text="{materialID}-{description}"/>
+                <m:Label text="{item}"/>
+                <m:ObjectIdentifier title="{materialID}" text="{material/description}"/>
                 <m:Text text="{quantity}"/>
+                <m:Text text="{netValue}"/>
               </m:ColumnListItem>
             </m:Table>
           </ObjectPageSubSection>
@@ -50,7 +55,7 @@
           </ObjectPageSubSection>
         </subSections>
       </ObjectPageSection>
-      <ObjectPageSection id="idSectionList" title="{i18n>OtherDetails}">
+      <ObjectPageSection id="idSectionList" title="{i18n>otherDetails}">
         <subSections>
           <ObjectPageSubSection title="Stuff3">
             <m:FlexBox direction="Row" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
