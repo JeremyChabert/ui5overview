@@ -4,7 +4,7 @@
   xmlns:mvc="sap.ui.core.mvc">
   <App id="idAppControl" >
     <pages>
-	    <MessagePage text="Welcome ! Your app works perfectly but... it is just empty"
+	    <MessagePage text="{i18n>welcomeMessage}"
       showHeader="false" icon="sap-icon://thumb-up"
       description=""/>
     </pages>
