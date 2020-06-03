@@ -3,74 +3,93 @@
   xmlns:m="sap.m"
   xmlns:layout="sap.ui.layout"
   xmlns:mvc="sap.ui.core.mvc">
-  <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false">
-    <headerTitle>
-      <ObjectPageHeader id="idObjectPageHeader" isObjectTitleAlwaysVisible="true" objectImageURI="sap-icon://sales-order-item" isObjectIconAlwaysVisible="true" objectImageShape="Square" objectTitle="{orderID}">
-      </ObjectPageHeader>
-    </headerTitle>
-    <headerContent>
-      <m:FlexBox direction="Row">
-        <layout:VerticalLayout >
-          <m:Link text="{customer/phone}"/>
-          <m:Link text="{customer/website}"/>
-        </layout:VerticalLayout>
-        <layout:VerticalLayout>
-          <m:Text text="{customer/street}"/>
-          <m:Text text="{customer/city},{customer/country}"/>
-        </layout:VerticalLayout>
-      </m:FlexBox>
-    </headerContent>
-    <sections>
-      <ObjectPageSection id="idSectionDetail" title="{i18n>details}">
-        <subSections>
-          <ObjectPageSubSection title="Stuff1">
-            <m:Table growing="true" growingThreshold="5" id="SalesOrderItems" items="{path:'items'}" mode="None">
-              <m:columns>
-                <m:Column width="5rem">
-                  <m:Label text="{i18n>salesOrderItem}"/>
-                </m:Column>
-                <m:Column>
-                  <m:Label text="{i18n>product}"/>
-                </m:Column>
-                <m:Column>
-                  <m:Label text="{i18n>quantity}"/>
-                </m:Column>
-                <m:Column>
-                  <m:Label text="{i18n>netValue}"/>
-                </m:Column>
-              </m:columns>
-              <m:ColumnListItem>
-                <m:Label text="{item}"/>
-                <m:ObjectIdentifier title="{materialID}" text="{material/description}"/>
-                <m:Text text="{quantity}"/>
-                <m:Text text="{netValue}"/>
-              </m:ColumnListItem>
-            </m:Table>
-          </ObjectPageSubSection>
-          <ObjectPageSubSection title="Stuff2">
-            <m:FlexBox direction="Column" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
-              <m:Text text="anotherStuff"/>
-              <m:Text text="yetAnotherOne"/>
-            </m:FlexBox>
-          </ObjectPageSubSection>
-        </subSections>
-      </ObjectPageSection>
-      <ObjectPageSection id="idSectionList" title="{i18n>otherDetails}">
-        <subSections>
-          <ObjectPageSubSection title="Stuff3">
-            <m:FlexBox direction="Row" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
-              <m:Text text="someStuff"/>
-              <m:Text text="otherStuff"/>
-            </m:FlexBox>
-          </ObjectPageSubSection>
-          <ObjectPageSubSection title="Stuff4">
-            <m:FlexBox direction="Column" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
-              <m:Text text="anotherStuff"/>
-              <m:Text text="yetAnotherOne"/>
-            </m:FlexBox>
-          </ObjectPageSubSection>
-        </subSections>
-      </ObjectPageSection>
-    </sections>
-  </ObjectPageLayout>
+  <m:Page showFooter="false" showNavButton="true" navButtonPress="onNavBack" title="{i18n>details}" titleAlignment="Center">
+    <m:content>
+      <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="false">
+        <headerTitle>
+          <ObjectPageDynamicHeaderTitle id="idObjectPageHeader">
+
+            <snappedHeading>
+              <m:FlexBox fitContainer="true" alignItems="Center">
+                <m:Avatar src="sap-icon://sales-order-item" class="sapUiTinyMarginEnd"/>
+                <m:Title text="{orderID}" wrapping="true"/>
+              </m:FlexBox>
+            </snappedHeading>
+            <expandedContent>
+              <m:Text text="{orderID}"/>
+            </expandedContent>
+            <snappedContent>
+              <m:Text text="{customer/name}"/>
+            </snappedContent>
+
+          </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        <headerContent>
+          <m:FlexBox wrap="Wrap" alignItems="Center">
+            <m:Avatar class="sapUiSmallMarginEnd" src="sap-icon://addresses" displaySize="L" />
+            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+              <m:Link text="{customer/phone}"/>
+              <m:Link text="{customer/website}"/>
+            </layout:VerticalLayout>
+            <layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+              <m:Text text="{customer/street}"/>
+              <m:Text text="{customer/city},{customer/country}"/>
+            </layout:VerticalLayout>
+          </m:FlexBox>
+        </headerContent>
+        <sections>
+          <ObjectPageSection id="idSectionDetail" title="{i18n>details}">
+            <subSections>
+              <ObjectPageSubSection title="Stuff1">
+                <m:Table growing="true" growingThreshold="5" id="SalesOrderItems" items="{path:'items'}" mode="None">
+                  <m:columns>
+                    <m:Column width="5rem">
+                      <m:Label text="{i18n>salesOrderItem}"/>
+                    </m:Column>
+                    <m:Column>
+                      <m:Label text="{i18n>product}"/>
+                    </m:Column>
+                    <m:Column>
+                      <m:Label text="{i18n>quantity}"/>
+                    </m:Column>
+                    <m:Column>
+                      <m:Label text="{i18n>netValue}"/>
+                    </m:Column>
+                  </m:columns>
+                  <m:ColumnListItem>
+                    <m:Label text="{item}"/>
+                    <m:ObjectIdentifier title="{materialID}" text="{material/description}"/>
+                    <m:Text text="{quantity}"/>
+                    <m:Text text="{netValue}"/>
+                  </m:ColumnListItem>
+                </m:Table>
+              </ObjectPageSubSection>
+              <ObjectPageSubSection title="Stuff2">
+                <m:FlexBox direction="Column" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
+                  <m:Text text="anotherStuff"/>
+                  <m:Text text="yetAnotherOne"/>
+                </m:FlexBox>
+              </ObjectPageSubSection>
+            </subSections>
+          </ObjectPageSection>
+          <ObjectPageSection id="idSectionList" title="{i18n>otherDetails}">
+            <subSections>
+              <ObjectPageSubSection title="Stuff3">
+                <m:FlexBox direction="Row" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
+                  <m:Text text="someStuff"/>
+                  <m:Text text="otherStuff"/>
+                </m:FlexBox>
+              </ObjectPageSubSection>
+              <ObjectPageSubSection title="Stuff4">
+                <m:FlexBox direction="Column" alignItems="Stretch" alignContent="Start" justifyContent="SpaceBetween">
+                  <m:Text text="anotherStuff"/>
+                  <m:Text text="yetAnotherOne"/>
+                </m:FlexBox>
+              </ObjectPageSubSection>
+            </subSections>
+          </ObjectPageSection>
+        </sections>
+      </ObjectPageLayout>
+    </m:content>
+  </m:Page>
 </mvc:View>
