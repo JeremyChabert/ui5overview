@@ -29,7 +29,7 @@ Then enter following command:
 ```
 
 Open the app by clicking the hyperlink in the console or open chrome and type
-`http://localhost:4004/index.html`
+`http://localhost:4004/webapp/index.html`
 
 ## View
 
