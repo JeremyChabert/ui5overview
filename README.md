@@ -23,13 +23,15 @@ File / Folder | Purpose
 - Open a new terminal and run
 
 ```sh
-npm i #install all dependencies
+#install all dependencies
+npm i
 ```
 
-- Open a new terminal and run
+- Then use same or another terminal and run
 
 ```sh
-cds watch #run the application with autoreload on file changes
+#run the application with autoreload on file changes
+cds watch
 ```
 
 OR
@@ -65,23 +67,24 @@ Controller names always end with __*controller.js__ (as you'll see below).
 
 - [HelloWorld](Helloworld.md)
 - [Binding](Binding.md)
+- [OData Binding](ODataBinding.md)
 - [Navigate](Navigate.md)
 
 > Every learning material has a dedicated branch containing the final solution of each step
 
 ```sh
 #For helloworld final content
-> git clone --single-branch --branch helloworld https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+> git checkout --track --origin/helloworld
 #--------
 
 #For binding final content
 # Part1
-> git clone --single-branch --branch binding https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+> git checkout --track --origin/binding
 # Part2
-> git clone --single-branch --branch odatabinding https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+> git checkout --track --origin/odatabinding
 #--------
 
 #For navigation final content
-> git clone --single-branch --branch navigation https://innersource.soprasteria.com/sap-technologies-trainings/ui5overview.git
+>  git checkout --track --origin/navigation
 #--------
 ```

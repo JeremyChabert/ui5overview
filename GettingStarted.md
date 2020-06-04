@@ -40,13 +40,21 @@ This should takes a few minutes
 > npm i -g @sap/cds
 ```
 
-Once the installation done, test your setup with the following command line.
+Once the installation is done, test your setup with the following command line.
 
 ```sh
 > cds -v
 ```
 
 ### Git
+
+Once the installation is done, test your setup with the following command line in any repository
+
+```sh
+> git
+```
+
+This should display the list of commands available using git CLI (**C**ommand **L**ine **I**nterface)
 
 ## Retrieve learning material
 
