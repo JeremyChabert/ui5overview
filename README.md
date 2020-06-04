@@ -65,6 +65,7 @@ Controller names always end with __*controller.js__ (as you'll see below).
 
 - [HelloWorld](Helloworld.md)
 - [Binding](Binding.md)
+- [OData Binding](ODataBinding.md)
 - [Navigate](Navigate.md)
 
 > Every learning material has a dedicated branch containing the final solution of each step
