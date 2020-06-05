@@ -43,7 +43,8 @@ OR
 ### THE Guide
 
 The link below shall be your bible.  
-Everything you need or will need for this training or later is in this website [SDK](https://sapui5.hana.ondemand.com/)
+Everything you need or will need for this training or later is in this website  
+[The SDK](https://sapui5.hana.ondemand.com/)
 
 So let's take a minute or two to look what it contains.
 

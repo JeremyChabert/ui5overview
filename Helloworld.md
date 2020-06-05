@@ -124,6 +124,17 @@ Let's get back to our webapp.
 
 Copy the `MessageStrip` component (everything between the tags `<MessageStrip>`) and paste it in your app between the `<content>` tags
 
+```xml
+  <MessageStrip
+      text="{/default}"
+      type="Success"
+      enableFormattedText="true"
+      showIcon="true"
+      showCloseButton="true"
+      class="sapUiMediumMargin">
+  </MessageStrip>
+```
+
 Change the `showCloseButton` attribute and set it to false
 
 Change the `text` attribute with the following:
