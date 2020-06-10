@@ -11,14 +11,9 @@ Required:
 - [NodeJS:LTS](https://nodejs.org/en/download/)
 - [Git](https://git-scm.com/downloads)
 
-Optional:
-
-- [Yeoman](https://yeoman.io/)
-- EasyUI5
-
 ### Node
 
-Once node is intall, you can test your setup opening a powershell window or command window  
+Once node is installed, you can test your setup opening a powershell window or command window  
 (window icon->search->cmd.exe)
 In the shell of your choice, write the following lines
 
