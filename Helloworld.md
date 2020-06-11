@@ -1,15 +1,13 @@
 # Hello world starter
 
-Start VSCode from the directory where you have cloned your app
+:warning: **From the folder** you have pulled from git (e.g. ui5overview), open VSCode
 
 - From Windows Explorer, `Right Click -> Open in VSCode`
 - From a terminal prompt, type `code .`
 
 In VSCode, open an integrated terminal:
 
-- Press key `Ctrl+P`
-- Start typing `>integra`
-- Select `Create New Integrated Terminal`
+- From the toolbar, `Terminal` -> `New Terminal`
 
 Then enter following command:
 
