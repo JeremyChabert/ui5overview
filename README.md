@@ -24,26 +24,6 @@ File / Folder | Purpose |   |
 `srv/` | your service models and code go here|*comes prefilled for this learning material*|
 `package.json` | project metadata and configuration|*comes prefilled for this learning material*|
 
-### Next Steps
-
-- Open a new terminal and run
-
-```sh
-#install all dependencies
-npm i
-```
-
-- Then use same or another terminal and run
-
-```sh
-#run the application with autoreload on file changes
-cds watch
-```
-
-OR
-
-- in VSCode simply choose _**Terminal** > Run Task > cds watch_
-
 ## Diving into UI5
 
 ### :notebook: THE Guide
