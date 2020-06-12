@@ -1,45 +1,54 @@
 # OData Binding
 
-## OData ?
-[OData](https://www.odata.org/) (Open Data Protocol) is a standard that defines a set of best practices for building and consuming RESTful APIs, created by Microsoft. It is widely used by SAP technologies, including by the SAPUI5 framework.
+## OData
+
+[OData](https://www.odata.org/) (Open Data Protocol) is a standard that defines a set of best practices for building and consuming [RESTful](https://fr.wikipedia.org/wiki/Representational_state_transfer) APIs, created by Microsoft. It is widely used by SAP technologies, including by the SAPUI5 framework.
 
 ## Explore the OData API
+
 To get a better understanding of how an OData API works, we will explore our own OData API.
 
 To do so, go to [http://localhost:4004/api](http://localhost:4004/api). You should see a list of the availables *entities* (endpoints) available in the service.
 
-An OData service is defined by a **metadata** document, a machine-readable description of the data model of the API. The SAPUI5 framework uses the metadata document to create an `ODataModel`. To see the metadata of our API, go to [http://localhost:4004/api/$metadata](http://localhost:4004/api/$metadata).
+An OData service is defined by a **metadata** document, a machine-readable description of the data model of the API. The SAPUI5 framework uses the metadata document to create an `ODataModel`. To see the metadata of our API, go to [<http://localhost:4004/api/$metadata>](http://localhost:4004/api/$metadata).
 
 Here are a few examples of OData GET queries against our API:
-- [http:localhost:4004/api/Orders](http:localhost:4004/api/Orders): Dislays a list of all the Orders
-- [http:localhost:4004/api/Orders(01d4e16e-ab1a-45c7-8f13-e76edac4c014)](http:localhost:4004/api/Orders(01d4e16e-ab1a-45c7-8f13-e76edac4c014)): Displays the Order with the ID *01d4e16e-ab1a-45c7-8f13-e76edac4c014*
-- [http:localhost:4004/api/Materials](http:localhost:4004/api/Materials): Displays a list of all the Materials
-- [http://localhost:4004/api/Orders?$expand=items](http://localhost:4004/api/Orders?$expand=items): Displays a list of Orders with their items
-- [http://localhost:4004/api/Orders?$filter=currency eq 'XAF'&$orderby=createdAt](http://localhost:4004/api/Orders?$filter=currency%20eq%20%27XAF%27&$orderby=createdAt): Displays a list of the Orders with a currency of *XAD*, ordered by their creation date
+
+- [<http:localhost:4004/api/Orders>](http:localhost:4004/api/Orders): Dislays a list of all the Orders
+- [<http:localhost:4004/api/Orders(01d4e16e-ab1a-45c7-8f13-e76edac4c014)>](http:localhost:4004/api/Orders(01d4e16e-ab1a-45c7-8f13-e76edac4c014)): Displays the Order with the ID *01d4e16e-ab1a-45c7-8f13-e76edac4c014*
+- [<http:localhost:4004/api/Materials>](http:localhost:4004/api/Materials): Displays a list of all the Materials
+- [<http://localhost:4004/api/Orders?$expand=items>](http://localhost:4004/api/Orders?$expand=items): Displays a list of Orders with their items
+- [<http://localhost:4004/api/Orders?$filter=currency eq 'XAF'&$orderby=createdAt>](http://localhost:4004/api/Orders?$filter=currency%20eq%20%27XAF%27&$orderby=createdAt): Displays a list of the Orders with a currency of *XAD*, ordered by their creation date
 
 A lot of other query options exist. To learn more, click [here](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/)
 
 ## Configure an OData model
+
 The configuration is done in the application description file, `manifest.json`.
 
 First, we need to define our data source, that points to our API:
+
 ```json
 {
+  // ...
+  "sap.app": {
     // ...
-    "sap.app": {
-        // ...
-        // add a dataSources object under the existing properties
-        "dataSources": {
-            "API": {
-                "uri": "/api",
-                "type": "odata"
-            }
+    // add a dataSources object under the existing properties
+    "dataSources": {
+        "API": {
+          "uri": "/api/",
+          "type": "odata",
+          "settings": {
+            "odataVersion": "4.0"
         }
+      }
     }
+  }
 }
 ```
 
 Now, let's define our model, still in `manifest.json`:
+
 ```json
 {
   // ...
@@ -50,9 +59,20 @@ Now, let's define our model, still in `manifest.json`:
         // ...
         },
         // Add a new model:
-        "": {
-          "type": "sap.ui.model.odata.v2.ODataModel",
-          "dataSource": "API"
+      "": {
+          "dataSource": "API",
+          "type": "sap.ui.model.odata.v4.ODataModel",
+          "settings": {
+            "synchronizationMode": "None",
+            "operationMode": "Server",
+            "autoExpandSelect": true,
+            "earlyRequests": true,
+            "groupProperties": {
+              "default": {
+                "submit": "Auto"
+              }
+            }
+          }
         }
       }
     },
@@ -74,31 +94,29 @@ We will use a [sap.m.List](https://sapui5.hana.ondemand.com/#/api/sap.m.List) co
 For the items of the list (i.e. the content of the `items` aggregation), we will use a [sap.m.StandardListItem](https://sapui5.hana.ondemand.com/#/api/sap.m.StandardListItem). The UI5 framework will generate an instance of StandardListItem for each entry in the Orders entity.
 
 Go to the `Home.view.xml` file:
+
 ```xml
 <!-- ... -->
-        <content>
-
-            <!-- Remove the existing content -->
-
-            <List
-              headerText="Orders"
-              items="{
-                path: '/Orders',
-                parameters: {
-                  expand: 'customer'
-                },
-                sorter: { path: 'createdAt' }
-              }"
-              growing="true">
-              <items>
-                <StandardListItem
-                  title="{orderID}"
-                  description="{createdAt}"
-                  info="{customer/name} ({customer/phone})" />
-              </items>
-            </List>
-
-        </content>
+ <content>
+     <!-- Remove the existing content -->
+     <List
+       headerText="Orders"
+       items="{
+         path: '/Orders',
+         parameters: {
+           expand: 'customer'
+         },
+         sorter: { path: 'createdAt' }
+       }"
+       growing="true">
+       <items>
+         <StandardListItem
+           title="{orderID}"
+           description="{createdAt}"
+           info="{customer/name} ({customer/phone})" />
+       </items>
+     </List>
+ </content>
 <!-- ... -->
 ```
 
