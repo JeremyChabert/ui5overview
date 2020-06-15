@@ -172,7 +172,7 @@ Add the following after the existing target which should be `Home`
     ...,
     "Detail_Target" : {
         "viewName":"Detail",
-        "viewLevel":"1",
+        "viewLevel":1,
         "transition":"slide"
     }
 }
@@ -190,6 +190,7 @@ On `Home.view.xml`, you'll need to add the connect the press event to a method
 <StandardListItem
 ...
 press="navToDetail"
+type="Navigation"
 ...>
 ...
 </StandardListItem>
@@ -200,14 +201,19 @@ Then, on `Home.controller.js`, we will react to the press event with the followi
 ```js
 navToDetail:function(oEvent){
     const oItem = oEvent.getSource();
-    const sOrder = oItem.getBindingContext().orderId;
+    const sOrder = oItem.getBindingContext().getObject().orderID;
     this.navTo('RouteDetail',{
         order:sOrder
     })
 }
 ```
 
->It's retrieving the source of the event, the item pressed. Once we have the item pressed, we retrieve its binding context to get the order identifier and pass it to the route as a parameter
+>:warning: code is to be written between curly brackets of following statement return Controller.extend("com.ssg.myUI5App.controller.Home", {});
+
+Explanations:
+
+- It's retrieving the source of the event, the item pressed.  
+- Once we have the item pressed, we retrieve its binding context to get the order identifier and pass it to the route as a parameter
 
 ## Bonus: Bind Detail to order clicked
 
