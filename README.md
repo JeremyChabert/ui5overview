@@ -75,8 +75,3 @@ Controller names always end with __*controller.js__ (as you'll see below).
 > git checkout --track --origin/navigation
 #--------
 ```
-
-:e-mail: Contact us:
-
-- theo.sebastien@soprasteria.com
-- jeremy.chabert@soprasteria.com
