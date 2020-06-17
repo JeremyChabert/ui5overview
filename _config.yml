@@ -1,3 +1,5 @@
 theme: jekyll-theme-leap-day
+github:
+  is_project_page: false
 plugins:
   - jemoji
