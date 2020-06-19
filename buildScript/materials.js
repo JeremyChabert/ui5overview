@@ -4,12 +4,17 @@ const FIN = ['A380', 'A310', 'A320', 'A400M']
 const SFIN = ['Wings', 'Tail', 'Nose', 'Body']
 const RAW = ['Steel pipe', 'Wires', 'Screw', 'Coating']
 
+const financial = (x) => {
+    return parseFloat(Number.parseFloat(x).toFixed(2))
+}
+
 //prepare generator
 casual.define('rawmaterial', function () {
     return {
         materialID: casual.integer(1e10, 2e10),
         description: casual.random_element(RAW),
         type: 'RAW',
+        unitPrice: financial(casual.double((from = 10), (to = 10000))),
     }
 })
 
@@ -40,39 +45,69 @@ const generateListOfComp = (aComponents) => {
     return aSubMaterials
 }
 
-const createRawMaterials = () => {
+const createRawMaterials = (limit) => {
     const aRawMaterials = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < limit; i++) {
         aRawMaterials.push(casual.rawmaterial)
     }
     return aRawMaterials
 }
 
-const createSFINMaterial = (aRawMaterials) => {
-    const aSFINMaterials = []
-    for (let i = 0; i < 10; i++) {
+const createSFINMaterial = (aRawMaterials, limit) => {
+    let aSFINMaterials = []
+    for (let i = 0; i < limit; i++) {
         aSFINMaterials.push(casual.sfinmaterial(aRawMaterials))
     }
+    aSFINMaterials.map((x) => {
+        x.unitPrice = financial(
+            x.components
+                .map((a) => {
+                    const component = aRawMaterials.find(
+                        (el) => el.materialID === a
+                    )
+                    return component.unitPrice
+                })
+                .reduce((a, b) => {
+                    return a + b
+                })
+        )
+        return x
+    })
     return aSFINMaterials
 }
 
-const createFINMaterial = (aMaterials) => {
-    const aFINMaterials = []
-    for (let i = 0; i < 10; i++) {
+const createFINMaterial = (aMaterials, limit) => {
+    let aFINMaterials = []
+    for (let i = 0; i < limit; i++) {
         aFINMaterials.push(casual.finmaterial(aMaterials))
     }
+    aFINMaterials = aFINMaterials.map((x) => {
+        x.unitPrice = financial(
+            x.components
+                .map((a) => {
+                    const component = aMaterials.find(
+                        (el) => el.materialID === a
+                    )
+                    return component.unitPrice
+                })
+                .reduce((a, b) => {
+                    return a + b
+                })
+        )
+        return x
+    })
     return aFINMaterials
 }
 
-const createMaterials = () => {
-    const aRawMaterials = createRawMaterials()
-    const aSFINMaterials = createSFINMaterial(aRawMaterials)
-    const aFINMaterials = createFINMaterial([
-        ...aRawMaterials,
-        ...aSFINMaterials,
-    ])
+const createMaterials = (limit) => {
+    const aRawMaterials = createRawMaterials(limit)
+    const aSFINMaterials = createSFINMaterial(aRawMaterials, limit)
+    const aFINMaterials = createFINMaterial(
+        [...aRawMaterials, ...aSFINMaterials],
+        limit
+    )
     return [...aFINMaterials, ...aRawMaterials, ...aSFINMaterials]
 }
-module.exports.generateMaterials = function () {
-    return createMaterials()
+module.exports.generateMaterials = function (limit) {
+    return createMaterials(limit)
 }

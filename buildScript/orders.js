@@ -1,14 +1,22 @@
 const casual = require('casual')
 
+const financial = (x) => {
+    return parseFloat(Number.parseFloat(x).toFixed(2))
+}
+
 const createOrderItems = (orderRef, max, materialList) => {
     //prepare generator
     const aMaterialID = materialList.map((x) => x.materialID)
     casual.define('orderItem', function () {
-        return {
+        const obj = {
             materialID: casual.random_element(aMaterialID),
             quantity: casual.integer(1, 20),
-            netValue: casual.double(0, 1000).toFixed(2),
         }
+        obj.netValue = financial(
+            materialList.find((el) => el.materialID === obj.materialID)
+                .unitPrice * obj.quantity
+        )
+        return obj
     })
 
     //generate
@@ -18,6 +26,7 @@ const createOrderItems = (orderRef, max, materialList) => {
     for (let i = 0; i < max; i++) {
         const orderItem = casual.orderItem
         orderItem.orderID = orderRef.orderID
+        orderItem.year = orderRef.year
         orderItem.item = item
         aOrderItems.push(orderItem)
         item += 10
@@ -34,6 +43,7 @@ const createOrders = (max, customerList, materialList) => {
             currency: casual.currency_code,
             soldTo: casual.random_element(aCustomerId),
             createdAt: casual.date('YYYY-MM-DD'),
+            year: casual.random_element([2016, 2017, 2018, 2019, 2020]),
         }
     })
 
@@ -42,10 +52,18 @@ const createOrders = (max, customerList, materialList) => {
     let aOrderItems = []
     for (let i = 0; i < max; i++) {
         const order = casual.order
-        aOrders.push(order)
-        aOrderItems = aOrderItems.concat(
-            createOrderItems(order, casual.integer(0, 10), materialList)
+        const items = createOrderItems(
+            order,
+            casual.integer(1, 10),
+            materialList
         )
+        order.netValue = financial(
+            items
+                .map((a) => a.netValue)
+                .reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
+        )
+        aOrders.push(order)
+        aOrderItems = aOrderItems.concat(items)
     }
     return { aOrders, aOrderItems }
 }
