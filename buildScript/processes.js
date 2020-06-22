@@ -1,10 +1,23 @@
 const casual = require('casual');
 
-const generateNodes = () => {};
+casual.define('group', (index) => ({
+    key: index,
+    title: `Group ${index}`,
+}));
+
+const generateNodes = (groups, max) => {
+    
+};
 
 const generateLines = () => {};
 
-const generateGroups = () => {};
+const generateGroups = (max) => {
+    const groups = [];
+    for (let i = 0; i < max; i++) {
+        groups.push(casual.group(i));
+    }
+    return groups;
+};
 
 module.exports = {
     generateNodes,
