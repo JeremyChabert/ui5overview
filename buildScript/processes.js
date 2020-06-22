@@ -49,14 +49,6 @@ const generateGroups = (max) => {
     return groups;
 };
 
-const groups = generateGroups(5);
-const nodes = generateNodes(30, groups);
-const lines = generateLines(nodes);
-console.log(groups);
-console.log(nodes);
-console.log(lines);
-// console.log(nodes);
-
 module.exports = {
     generateNodes,
     generateLines,
