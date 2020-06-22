@@ -37,14 +37,37 @@ const createOrderItems = (orderRef, max, materialList) => {
 const createOrders = (max, customerList, materialList) => {
     //prepare generator
     const aCustomerId = customerList.map((x) => x.customerID)
+    const now = new Date()
+    const year = now.getFullYear()
+    const aYears = []
+    for (let i = 0; i < 5; i++) {
+        aYears.push(year - i)
+    }
+
     casual.define('order', function () {
-        return {
+        const oTemp = {
             orderID: casual.uuid,
             currency: casual.currency_code,
+            type: casual.random_element(['A', 'B', 'C']),
             soldTo: casual.random_element(aCustomerId),
-            createdAt: casual.date('YYYY-MM-DD'),
-            year: casual.random_element([2016, 2017, 2018, 2019, 2020]),
+            year: casual.random_element(aYears),
         }
+        oTemp.createdAt = new Date(
+            oTemp.year,
+            casual.month_number,
+            casual.day_of_month
+        )
+        oTemp.status =
+            oTemp.year === year
+                ? casual.random_element([
+                      'SUSPENDED',
+                      'IN PROGRESS',
+                      'OPEN',
+                      'CLOSED',
+                      'DELAYED',
+                  ])
+                : casual.random_element(['CLOSED', 'CANCELED'])
+        return oTemp
     })
 
     //generate
