@@ -3,12 +3,15 @@ using { Country, managed } from '@sap/cds/common';
 
 entity Orders : managed {
     key orderID : UUID;
-    soldTo : String;
+    soldTo: String;
+    type: String;
     netValue: Decimal(13, 2);
-    currency : String;
-    year      : Integer;
+    currency: String;
     items: Association to many OrderItems on items.orderID = orderID;
     customer: Association to Customers on customer.customerID = soldTo;
+    createdAt: DateTime;
+    status: String;
+    year: Integer;
 }
 
 entity OrderItems {
@@ -17,7 +20,7 @@ entity OrderItems {
     materialID: String;
     quantity: Integer;
     netValue: Decimal(13, 2);
-    year       : Integer;
+    year: Integer;
     order: Association to Orders on order.orderID = orderID;
     material: Association to Materials on material.materialID = materialID;
 }
