@@ -14,7 +14,7 @@ casual.define('rawmaterial', function () {
         materialID: casual.integer(1e10, 2e10),
         description: casual.random_element(RAW),
         type: 'RAW',
-        unitPrice: financial(casual.double((from = 10), (to = 10000))),
+        unitPrice: financial(casual.double((from = 5), (to = 500))),
     }
 })
 
@@ -59,16 +59,17 @@ const createSFINMaterial = (aRawMaterials, limit) => {
         aSFINMaterials.push(casual.sfinmaterial(aRawMaterials))
     }
     aSFINMaterials.map((x) => {
-        x.unitPrice = x.components
-            .map((a) => {
-                const component = aRawMaterials.find(
-                    (el) => el.materialID === a
-                )
-                return financial(component.unitPrice)
-            })
-            .reduce((a, b) => {
-                return a + b
-            })
+        x.unitPrice = financial(
+            x.components
+                .map((a) => {
+                    const { unitPrice } = aRawMaterials.find(
+                        (el) => el.materialID === a
+                    )
+                    return unitPrice
+                })
+                .reduce((a, b) => a + b) *
+                (1 + casual.random) //add value
+        )
         return x
     })
     return aSFINMaterials
@@ -80,14 +81,17 @@ const createFINMaterial = (aMaterials, limit) => {
         aFINMaterials.push(casual.finmaterial(aMaterials))
     }
     aFINMaterials = aFINMaterials.map((x) => {
-        x.unitPrice = x.components
-            .map((a) => {
-                const component = aMaterials.find((el) => el.materialID === a)
-                return financial(component.unitPrice)
-            })
-            .reduce((a, b) => {
-                return a + b
-            })
+        x.unitPrice = financial(
+            x.components
+                .map((a) => {
+                    const component = aMaterials.find(
+                        (el) => el.materialID === a
+                    )
+                    return component.unitPrice
+                })
+                .reduce((a, b) => a + b) *
+                (1 + casual.random) //add value
+        )
         return x
     })
     return aFINMaterials

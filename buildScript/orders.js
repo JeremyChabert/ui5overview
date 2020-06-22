@@ -10,11 +10,14 @@ const createOrderItems = (orderRef, max, materialList) => {
     casual.define('orderItem', function () {
         const obj = {
             materialID: casual.random_element(aMaterialID),
-            quantity: casual.integer(1, 20),
         }
+        const { unitPrice } = materialList.find(
+            (el) => el.materialID === obj.materialID
+        )
         obj.netValue = financial(
-            materialList.find((el) => el.materialID === obj.materialID)
-                .unitPrice * obj.quantity
+            unitPrice > 1000
+                ? unitPrice * casual.integer(1, 2)
+                : unitPrice * casual.integer(1, 20)
         )
         return obj
     })
@@ -47,7 +50,7 @@ const createOrders = (max, customerList, materialList) => {
     casual.define('order', function () {
         const oTemp = {
             orderID: casual.uuid,
-            currency: casual.currency_code,
+            currency: casual.random_element(['EUR', 'USD', 'CHF']),
             type: casual.random_element(['A', 'B', 'C']),
             soldTo: casual.random_element(aCustomerId),
             year: casual.random_element(aYears),
