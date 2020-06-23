@@ -6,6 +6,7 @@ const path = require('path')
 const Order = require('./orders')
 const Customer = require('./customers')
 const Material = require('./materials')
+const Process = require('./processes');
 
 const folder = path.resolve(__dirname, '../db/csv/')
 const csvConfig = {
@@ -28,12 +29,18 @@ const { aOrders, aOrderItems } = Order.generateOrders(
     aCustomers,
     aMaterials
 )
+const aProcessGroups = Process.generateGroups(5);
+const aProcessNodes = Process.generateNodes(30, aProcessGroups);
+const aProcessLines = Process.generateLines(aProcessNodes);
 
 const data = {
     customers: aCustomers,
     orders: aOrders,
     orderItems: aOrderItems,
     materials: aMaterials,
+    processGroups: aProcessGroups,
+    processNodes: aProcessNodes,
+    processLines: aProcessLines,
 }
 
 switch (true) {
