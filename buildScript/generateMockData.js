@@ -6,7 +6,7 @@ const path = require('path')
 const Order = require('./orders')
 const Customer = require('./customers')
 const Material = require('./materials')
-const Process = require('./processes');
+const Process = require('./processes')
 
 const folder = path.resolve(__dirname, '../db/csv/')
 const csvConfig = {
@@ -29,17 +29,30 @@ const { aOrders, aOrderItems } = Order.generateOrders(
     aCustomers,
     aMaterials
 )
-const aProcessGroups = Process.generateGroups(5);
-const aProcessNodes = Process.generateNodes(30, aProcessGroups);
-const aProcessLines = Process.generateLines(aProcessNodes);
-
+// const aProcessGroups = Process.generateGroups(5);
+// const aProcessNodes = Process.generateNodes(30, aProcessGroups);
+// const aProcessLines = Process.generateLines(aProcessNodes);
+let aNodes = []
+const aProcessGroups = []
+const aArrayNodes = []
+for (let i = 0; i < 7; i++) {
+    const oGroup = {
+        id: i,
+        title: casual.title,
+    }
+    const aProcessNodes = Process.generateNodes(casual.integer(1, 6), [oGroup])
+    aNodes = [...aNodes, ...aProcessNodes]
+    aArrayNodes.push(aProcessNodes)
+    aProcessGroups.push(oGroup)
+}
+const aProcessLines = Process.generateLines(aArrayNodes)
 const data = {
     customers: aCustomers,
     orders: aOrders,
     orderItems: aOrderItems,
     materials: aMaterials,
     processGroups: aProcessGroups,
-    processNodes: aProcessNodes,
+    processNodes: aNodes,
     processLines: aProcessLines,
 }
 
