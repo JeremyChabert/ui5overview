@@ -122,7 +122,7 @@ sap.ui.define([
         oRouter.getRoute("RouteDetail")
         .attachPatternMatched(this._onObjectMatched, this);
       },
-      _onObjectMatched:function(){
+      _onObjectMatched:function(oEvent){
         const sOrder = oEvent.getParameter("arguments").order;
         sap.m.MessageToast.show(`You're viewing order : ${sOrder}`)
       }
