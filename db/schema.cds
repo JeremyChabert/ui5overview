@@ -1,5 +1,5 @@
 namespace schema;
-using { Country, managed } from '@sap/cds/common';
+using { cuid,Country, managed } from '@sap/cds/common';
 
 entity Orders : managed {
     key orderID : UUID;
@@ -50,13 +50,13 @@ entity ProcessGroups {
     title: String;
 }
 
-entity ProcessLines {
-    key fromId: Integer;
-    toId: Integer;
+entity ProcessLines: cuid {
+    key fromId: String;
+    toId: String;
 }
 
 entity ProcessNodes {
-    key id: Integer;
+    key id: String;
     title: String;
     status: String;
     icon: String;
