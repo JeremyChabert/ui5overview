@@ -44,3 +44,21 @@ entity Customers {
     website: String;
     orders: Association to many Orders on orders.soldTo = customerID;
 }
+
+entity ProcessGroups {
+    key id: Integer;
+    title: String;
+}
+
+entity ProcessLines {
+    key fromId: Integer;
+    toId: Integer;
+}
+
+entity ProcessNodes {
+    key id: Integer;
+    title: String;
+    status: String;
+    icon: String;
+    groupId: Integer;
+}

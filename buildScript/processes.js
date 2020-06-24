@@ -3,12 +3,12 @@ const casual = require('casual');
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 casual.define('group', (index) => ({
-    key: index,
+    id: index,
     title: casual.title,
 }));
 
 casual.define('node', (index, groups) => ({
-    key: index,
+    id: index,
     title: capitalize(casual.word),
         // for statuses: https://sapui5.hana.ondemand.com/#/api/sap.suite.ui.commons.networkgraph.ElementStatus:
     status: casual.random_element(['Error', 'Information', 'Standard', 'Success', 'Warning']),
@@ -16,12 +16,12 @@ casual.define('node', (index, groups) => ({
         'employee-approvals', 'employee-rejections', 'wrench', 'customize', 'source-code', 'laptop',
         'it-system', 'camera', 'touch', 'accidental-leave', 'action', 'away', 'bar-code', 'batch-payements',
         'cart', 'car-rental', 'citizen-connect', 'compare', 'delete', 'e-care']),
-    group: casual.random_element(groups).key,
+    groupId: casual.random_element(groups).id,
 }));
 
 casual.define('line', (index, nodes) => ({
-    from: index,
-    to: casual.random_element(nodes).key,
+    fromId: index,
+    toId: casual.random_element(nodes).id,
 }));
 
 const generateNodes = (max, groups) => {
