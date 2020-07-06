@@ -8,7 +8,16 @@
       "version": "1.0.0"
     },
     "title": "{{appTitle}}",
-    "description": "{{appDescription}}"
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "API": {
+        "uri": "/api/",
+        "type": "odata",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -50,6 +59,21 @@
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
           "bundleName": "com.ssg.myUI5App.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "API",
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
         }
       }
     },

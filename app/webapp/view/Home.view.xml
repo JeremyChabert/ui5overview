@@ -8,18 +8,23 @@
         <headerContent>
         </headerContent>
         <content>
-          <MessageStrip
-            text="Hello {local>/name}"
-            type="Success"
-            showIcon="true"
-            showCloseButton="false"
-            class="sapUiMediumMarginBottom">
-          </MessageStrip>
-          <Button text="Default"
-              press="onPress"
-              ariaDescribedBy="defaultButtonDescription genericButtonDescription">
-				  </Button>
-          <Input value="{local>/name}" placeholder="Say hello to..."/>
+            <List
+              headerText="Orders"
+              items="{
+                path: '/Orders',
+                parameters: {
+                  expand: 'customer'
+                },
+                sorter: { path: 'createdAt' }
+              }"
+              growing="true">
+              <items>
+                <StandardListItem
+                  title="{orderID}"
+                  description="{createdAt}"
+                  info="{customer/name} ({customer/phone})" />
+              </items>
+            </List>
         </content>
         <footer/>
       </Page>
