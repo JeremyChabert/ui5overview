@@ -1,4 +1,3 @@
-
 # UI5 Overview
 
 ## :warning: Getting Started
@@ -13,16 +12,16 @@ Please follow this setup guide in order to have all the tools required on your m
 
 ![Architecture](assets/Architecture.PNG)
 
->This learning material is a focus on the UI5 app. Other parts will be ignored on purpose.
+> This learning material is a focus on the UI5 app. Other parts will be ignored on purpose.
 
 It contains at least these folders and files, following the recommended SAP project layout:
 
-File / Folder | Purpose |   |
---|--|--|
-`app/` | content for UI frontends go here| **what we will edit in this session**
-`db/` | your domain models and data go here| *comes prefilled for this learning material*|
-`srv/` | your service models and code go here|*comes prefilled for this learning material*|
-`package.json` | project metadata and configuration|*comes prefilled for this learning material*|
+| File / Folder  | Purpose                              |                                              |
+| -------------- | ------------------------------------ | -------------------------------------------- |
+| `app/`         | content for UI frontends go here     | **what we will edit in this session**        |
+| `db/`          | your domain models and data go here  | _comes prefilled for this learning material_ |
+| `srv/`         | your service models and code go here | _comes prefilled for this learning material_ |
+| `package.json` | project metadata and configuration   | _comes prefilled for this learning material_ |
 
 ## Diving into UI5
 
@@ -42,20 +41,20 @@ So let's take a minute or two to look what it contains.
 
 **View**: This part is accountable for interpreting and rendering the initial UI. The view in the context of SAPUI5, generates the presentation to the user based on changes in the model.
 
-What does a view look like? Well, in its directory, views are in stored in the `view` folder and names of XML views always end with __*.view.xml__ (as you'll see later).
+What does a view look like? Well, in its directory, views are in stored in the `view` folder and names of XML views always end with **\*.view.xml** (as you'll see later).
 
 **Controller**: This is one of the most important parts.  
 This is the part that is accountable for separating the view logic from the data logic.  
 The Controller responds to **user interaction** and **view events** by adjusting the view and the model. The controller is essentially sending commands to the model to update it's state, like editing a document in a word processing application.  
 Similar to views, controllers carry the same name as the related view (if there is a 1:1 relationship).  
-Controller names always end with __*controller.js__ (as you'll see below).  
+Controller names always end with **\*controller.js** (as you'll see below).
 
 ## Building our app
 
-- [HelloWorld](Helloworld.md)
-- [Binding](Binding.md)
-- [OData Binding](ODataBinding.md)
-- [Navigate](Navigate.md)
+-   [HelloWorld](Helloworld.md)
+-   [Binding](Binding.md)
+-   [OData Binding](ODataBinding.md)
+-   [Navigate](Navigate.md)
 
 > Every learning material has a dedicated branch containing the final solution of each topic
 
@@ -75,8 +74,3 @@ Controller names always end with __*controller.js__ (as you'll see below).
 > git checkout --track --origin/navigation
 #--------
 ```
-
-:e-mail: Contact us:
-
-- theo.sebastien@soprasteria.com
-- jeremy.chabert@soprasteria.com
