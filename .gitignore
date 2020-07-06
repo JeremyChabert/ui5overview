@@ -3,3 +3,9 @@ package-lock.json
 .vscode/
 db/csv/
 app/node_modules/
+
+.github/ISSUE_TEMPLATE/bug_report.md
+
+.github/ISSUE_TEMPLATE/feature_request.md
+
+_config.yml

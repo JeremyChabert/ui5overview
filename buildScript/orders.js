@@ -1,14 +1,25 @@
 const casual = require('casual')
 
+const financial = (x) => {
+    return parseFloat(Number.parseFloat(x).toFixed(2))
+}
+
 const createOrderItems = (orderRef, max, materialList) => {
     //prepare generator
     const aMaterialID = materialList.map((x) => x.materialID)
     casual.define('orderItem', function () {
-        return {
+        const obj = {
             materialID: casual.random_element(aMaterialID),
-            quantity: casual.integer(1, 20),
-            netValue: casual.double(0, 1000).toFixed(2),
         }
+        const { unitPrice } = materialList.find(
+            (el) => el.materialID === obj.materialID
+        )
+        obj.netValue = financial(
+            unitPrice > 1000
+                ? unitPrice * casual.integer(1, 2)
+                : unitPrice * casual.integer(1, 20)
+        )
+        return obj
     })
 
     //generate
@@ -18,6 +29,7 @@ const createOrderItems = (orderRef, max, materialList) => {
     for (let i = 0; i < max; i++) {
         const orderItem = casual.orderItem
         orderItem.orderID = orderRef.orderID
+        orderItem.year = orderRef.year
         orderItem.item = item
         aOrderItems.push(orderItem)
         item += 10
@@ -28,13 +40,37 @@ const createOrderItems = (orderRef, max, materialList) => {
 const createOrders = (max, customerList, materialList) => {
     //prepare generator
     const aCustomerId = customerList.map((x) => x.customerID)
+    const now = new Date()
+    const year = now.getFullYear()
+    const aYears = []
+    for (let i = 0; i < 5; i++) {
+        aYears.push(year - i)
+    }
+
     casual.define('order', function () {
-        return {
+        const oTemp = {
             orderID: casual.uuid,
-            currency: casual.currency_code,
+            currency: casual.random_element(['EUR', 'USD', 'CHF']),
+            type: casual.random_element(['A', 'B', 'C']),
             soldTo: casual.random_element(aCustomerId),
-            createdAt: casual.date('YYYY-MM-DD'),
+            year: casual.random_element(aYears),
         }
+        oTemp.createdAt = new Date(
+            oTemp.year,
+            casual.month_number,
+            casual.day_of_month
+        )
+        oTemp.status =
+            oTemp.year === year
+                ? casual.random_element([
+                      'SUSPENDED',
+                      'IN PROGRESS',
+                      'OPEN',
+                      'CLOSED',
+                      'DELAYED',
+                  ])
+                : casual.random_element(['CLOSED', 'CANCELED'])
+        return oTemp
     })
 
     //generate
@@ -42,10 +78,18 @@ const createOrders = (max, customerList, materialList) => {
     let aOrderItems = []
     for (let i = 0; i < max; i++) {
         const order = casual.order
-        aOrders.push(order)
-        aOrderItems = aOrderItems.concat(
-            createOrderItems(order, casual.integer(0, 10), materialList)
+        const items = createOrderItems(
+            order,
+            casual.integer(1, 10),
+            materialList
         )
+        order.netValue = financial(
+            items
+                .map((a) => a.netValue)
+                .reduce((a, b) => parseFloat(a) + parseFloat(b), 0)
+        )
+        aOrders.push(order)
+        aOrderItems = aOrderItems.concat(items)
     }
     return { aOrders, aOrderItems }
 }

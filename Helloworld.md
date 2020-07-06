@@ -1,18 +1,46 @@
 # Hello world starter
 
+:warning: **From the folder** you have pulled from git (e.g. ui5overview), open VSCode
+
+- From Windows Explorer, `Right Click -> Open in VSCode`
+- From a terminal prompt, type `code .`
+
+In VSCode, open an integrated terminal:
+
+- From the toolbar, `Terminal` -> `New Terminal`
+
+Then enter following command:
+
+```sh
+#install dependencies
+> npm i
+
+#once finished, run the app
+> cds watch
+
+# what you should see in the console
+...
+[cds] - launched in: 3328.892ms
+[cds] - server listening on { url: 'http://localhost:4004' }
+[ terminate with ^C ]
+...
+```
+
+Open the app by clicking the hyperlink in the console or open chrome and type
+`http://localhost:4004/webapp/index.html`
+
 ## View
 
-Open your app folder and search for Home.view.xml
+Open your app folder and search for `Home.view.xml`
 Path should be `webapp/view/`
 
 What you should all have at this point is:
-
 
 ```xml
  <mvc:View >
   <App id="idAppControl">
     <pages>
-        <MessagePage text="Welcome ! Your app works perfectly but... it is just empty"
+        <MessagePage text="{i18n>welcomeMessage}"
         showHeader="false" icon="sap-icon://thumb-up"
         description=""/>
     </pages>
@@ -94,14 +122,35 @@ Let's get back to our webapp.
 
 Copy the `MessageStrip` component (everything between the tags `<MessageStrip>`) and paste it in your app between the `<content>` tags
 
+```xml
+  <MessageStrip
+      text="{/default}"
+      type="Success"
+      enableFormattedText="true"
+      showIcon="true"
+      showCloseButton="true"
+      class="sapUiMediumMargin">
+  </MessageStrip>
+```
+
 Change the `showCloseButton` attribute and set it to false
 
 Change the `text` attribute with the following:
-`{i18n>HelloWorld}`
+`{i18n>helloWorld}`
 
 ## i18n
 
-TODO
+[What is i18n?](https://inui.io/sap-ui5-ultimate-guide-internalization-i18n/)
+
+Go to your `i18n` folder.
+
+Edit `i18n_fr.properties` with the following content
+`helloWorld=Bonjour Monde`
+
+Edit `i18n.properties` with the following content
+`helloWorld=Hello world`
+
+You can now test your app by adding `?sap-language=fr` or `?sap-language=en` at the end of the url (after `.html`)
 
 ## Controller
 
@@ -127,12 +176,12 @@ Write down the code below between the curly brakets **{ }** of `Controller.exten
 
 ```js
 onPress: function (oEvent) {
-        sap.m.MessageToast.show("Hello World", {
-          duration: 3000, // default
-          my: "center center",
-          at: "center center",
-          animationTimingFunction: "ease-in-out",
-        });
+    sap.m.MessageToast.show("Hello World", {
+      duration: 3000, // default
+      my: "center center",
+      at: "center center",
+      animationTimingFunction: "ease-in-out",
+    });
 }
 ```
 
@@ -157,15 +206,15 @@ Then, you can use the library directly throught its alias
 
 ```js
 onPress: function (oEvent) {
-        MessageToast.show("Hello World",
-          duration: 3000, // default
-          my: "center center",
-          at: "center center",
-          animationTimingFunction: "ease-in-out",
-        });
+    MessageToast.show("Hello World",
+      duration: 3000, // default
+      my: "center center",
+      at: "center center",
+      animationTimingFunction: "ease-in-out",
+    });
 }
 ```
 
-Give it a shot and go to your [local app](http://localhost:8080/index.html) and press the button
+Give it a shot and go to your [local app](http://localhost:4000/index.html) and press the button
 
 [SAPUI5 SDK]:(https://sapui5.hana.ondemand.com/)

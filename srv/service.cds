@@ -10,4 +10,10 @@ service API {
 
   entity Customers as projection on schema.Customers;
 
+  entity ProcessGroups as projection on schema.ProcessGroups;
+
+  entity ProcessLines as projection on schema.ProcessLines;
+
+  entity ProcessNodes as projection on schema.ProcessNodes;
+
 }
